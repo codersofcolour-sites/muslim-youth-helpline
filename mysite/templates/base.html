@@ -24,6 +24,9 @@
         <!-- Tachyons CSS minified -->
         <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
 
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+
         {# Global stylesheets #}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="{% static 'css/mysite.css' %}">
@@ -35,7 +38,7 @@
 
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav class="navbar navbar-custom navbar-expand-lg navbar-dark">
   <a class="navbar-brand" href="#">Muslim Youth Helpline</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

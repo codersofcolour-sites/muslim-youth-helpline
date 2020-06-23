@@ -6,6 +6,12 @@
     <p class="meta">{{ page.date }}</p>
     {% image page.image fill-320x320 %}
     <div class="intro">{{ page.intro }}</div>
-    {{ page.body|richtext }}
+    {% for child in self.body %}
+    {% if child.block_type == 'heading' %}
+        <h2>{{ child }}</h2>
+    {% else %}
+        {{ child }}
+    {% endif %}
+{% endfor %}
     <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
 {% endblock %}

@@ -12,6 +12,11 @@ body {
   height: auto;
 }
 
+.card-btn {
+  background-color: #3e0163;
+  color: #fff;
+}
+
 .responsive-object {
   position: relative;
 }

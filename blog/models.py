@@ -13,6 +13,7 @@ from wagtail.search import index
 
 
 class BlogIndexPage(Page):
+    """Index page lists all the blog pages."""
     intro = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [

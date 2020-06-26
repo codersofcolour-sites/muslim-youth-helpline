@@ -21,5 +21,16 @@
             
             {{ post.specific.date }}
         {% endfor %}
+
+        <h5>Categories</h5>
+        <ul>
+            {% for  cat in categories %}
+                <li>
+                    <a href="?category={{cat.slug }}" style="color:#3e0163;">
+                        {{ cat.name }}
+                    </a>
+                </li>
+             {% endfor %}
+        </ul>
     </div>
 {% endblock %}

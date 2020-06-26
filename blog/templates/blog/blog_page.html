@@ -4,17 +4,17 @@
 {% block content %}
     <div class="container mt-5 mb-5">
         <div class="text-center">
-            <p class="meta">{{ page.date }}</p>
             <div class="intro">{{ page.intro }}</div>
+            <p class="meta">{{ page.date }}</p>
             <h1>{{ page.title }}</h1>
         </div>
 
-        <ul>
+        <ul class="text-center">
             {% for iter in self.blog_authors.all %}
                 {% image iter.author.image fill-50x50 as img %}
                 <li>
                     {% if iter.author.image %}
-                        <img src="{{ img.url }}" alt="{{ iter.author.name }}">
+                        <img class="text-center" src="{{ img.url }}" alt="{{ iter.author.name }}">
                     {% endif %}
                     {{ iter.author.name }}
                     {% if iter.author.website %}
@@ -27,7 +27,9 @@
         </ul>
     </div>
     
+   <div class="text-center img-fluid">
     {% image page.image fill-320x320 %}
+   </div> 
     
     {% for child in self.body %}
 
@@ -43,6 +45,19 @@
         </div>
     </div>
 {% endfor %}
+
+<h5>Categories</h5>
+<ul>
+    {% for  cat in self.categories.all %}
+        <li>
+            <a href="{{ self.get_parent.url}}?category={{cat.slug }}" style="color:#3e0163;">
+                {{ cat.name }}
+            </a>
+        </li>
+    {% endfor %}
+    
+</ul>
+
 
 <div class="container">
         <p class="text-center"><a href="{{ page.get_parent.url }}" style="color: #3e0163;">Return to blog</a></p>

@@ -8,6 +8,7 @@ from wagtail.admin.edit_handlers import (
     MultiFieldPanel,
     StreamFieldPanel,
 )
+from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.core.fields import StreamField
 from wagtail.core import blocks
@@ -16,6 +17,21 @@ from wagtail.embeds.blocks import EmbedBlock
 from modelcluster.fields import ParentalKey
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
+
+
+class BlogAuthorsOrderable(Orderable):
+    """This allows us to select one or more blog authors from snippets"""
+
+    page = ParentalKey("blog.BlogPage", related_name="blog_authors")
+
+    author = models.ForeignKey(
+        "blog.blogAuthor",
+        on_delete=models.CASCADE,
+    )
+
+    panels = [
+        SnippetChooserPanel("author"),
+    ]
 
 
 class BlogAuthor(models.Model):
@@ -98,9 +114,17 @@ class BlogPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('date'),
         ImageChooserPanel('image'),
+        MultiFieldPanel(
+            [
+                InlinePanel("blog_authors", label="Author",
+                            min_num=1, max_num=5)
+            ],
+            heading="Author(s)"
+        ),
         FieldPanel('intro'),
         StreamFieldPanel('body'),
         InlinePanel('gallery_images', label="Gallery images"),
+
     ]
 
 

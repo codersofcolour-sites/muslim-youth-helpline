@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'streams',
     'site_settings',
     'subscribers',
+    'menus',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -59,6 +60,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [

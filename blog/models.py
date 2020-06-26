@@ -1,6 +1,5 @@
 from django import forms
 from django.db import models
-
 from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import RichTextField
 from wagtail.admin.edit_handlers import (

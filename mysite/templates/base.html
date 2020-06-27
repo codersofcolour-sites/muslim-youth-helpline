@@ -44,7 +44,7 @@
 
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
-        <nav class="navbar navbar-custom navbar-expand-lg navbar-dark">
+{% comment %} <nav class="navbar navbar-custom navbar-expand-lg navbar-dark">
   <a class="navbar-brand" href="/">Muslim Youth Helpline</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -62,15 +62,15 @@
         </li>
       {% endfor %}
     </ul>
-    <!--
+
   <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="text" placeholder="Search">
       <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
     </form>
-    -->
+  
   
   </div>
-</nav>
+</nav> {% endcomment %}
 
 <div class="container ph3 ph5-ns">
             {% block content %}{% endblock %}

@@ -1,4 +1,3 @@
-from django import forms
 from django.db import models
 from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import RichTextField
@@ -14,7 +13,7 @@ from wagtail.core.fields import StreamField
 from wagtail.core import blocks
 from wagtail.admin.edit_handlers import StreamFieldPanel
 from wagtail.embeds.blocks import EmbedBlock
-from modelcluster.fields import ParentalKey, ParentalManyToManyField
+from modelcluster.fields import ParentalKey
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 
@@ -75,34 +74,6 @@ class BlogAuthor(models.Model):
 register_snippet(BlogAuthor)
 
 
-class BlogCategory(models.Model):
-    """Blog category for a snippet"""
-
-    name = models.CharField(max_length=255)
-    slug = models.SlugField(
-        verbose_name="slug",
-        allow_unicode=True,
-        max_length=255,
-        help_text='A slug to identify posts by this category'
-    )
-
-    panels = [
-        FieldPanel("name"),
-        FieldPanel("slug"),
-    ]
-
-    class Meta:
-        verbose_name = "Blog Category"
-        verbose_name_plural = "Blog Categories"
-        ordering = ["name"]
-
-    def __str__(self):
-        return self.name
-
-
-register_snippet(BlogCategory)
-
-
 class BlogIndexPage(Page):
     """Index page lists all the blog pages."""
     intro = RichTextField(blank=True)
@@ -117,7 +88,6 @@ class BlogIndexPage(Page):
         context = super(BlogIndexPage, self).get_context(request)
         live_blogpages = self.get_children().live()
         context['blogpages'] = live_blogpages.order_by('-first_published_at')
-        context["categories"] = BlogCategory.objects.all()
         return context
 
 
@@ -129,9 +99,6 @@ class BlogPage(Page):
         blank=True,
         on_delete=models.SET_NULL
     )
-
-    categories = ParentalManyToManyField("blog.BlogCategory", blank=True)
-
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
         index.SearchField('body'),
@@ -152,11 +119,6 @@ class BlogPage(Page):
                             min_num=1, max_num=5)
             ],
             heading="Author(s)"
-        ),
-        MultiFieldPanel(
-            [
-                FieldPanel("categories", widget=forms.CheckboxSelectMultiple)
-            ], heading="Categories"
         ),
         FieldPanel('intro'),
         StreamFieldPanel('body'),

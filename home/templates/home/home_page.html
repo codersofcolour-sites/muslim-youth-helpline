@@ -66,28 +66,6 @@
     {% for block in page.content %}
         {% include_block block %}
     {% endfor %}
-
-    Site settings:
-            {% if settings.site_settings.SocialMediaSettings.twitter %}
-                <a class="social-icon" href="{{ settings.site_settings.SocialMediaSettings.twitter}}">
-                    <i class="fab fa-twitter"></i>
-                </a>
-            {% endif %}
-            {% if settings.site_settings.SocialMediaSettings.instagram %}
-                <a class="social-icon" href="{{ settings.site_settings.SocialMediaSettings.instagram}}">
-                    <i class="fab fa-instagram"></i>
-                </a>
-            {% endif %}
-            {% if settings.site_settings.SocialMediaSettings.facebook %}
-                <a class="social-icon" href="{{ settings.site_settings.SocialMediaSettings.facebook}}">
-                    <i class="fab fa-facebook"></i>
-                </a>
-            {% endif %}
-            {% if settings.site_settings.SocialMediaSettings.linkedin %}
-                <a class="social-icon" href="{{ settings.site_settings.SocialMediaSettings.linkedin}}">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-            {% endif %}    
 {% endblock %}
 
 

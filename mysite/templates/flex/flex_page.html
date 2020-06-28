@@ -2,10 +2,17 @@
 {% load static wagtailcore_tags wagtailimages_tags %} 
     
 {% block content %}
-    <div>  
-        {{ self.subtitle }}
-    </div>
-
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <h1 class="display-4">{{ self.title }}</h1>
+                    {% if self.subtitile %}
+                         <div class="lead">{{ self.subtitle }}</div>
+                    {% endif %}
+                   
+                </div>
+            </div>
+        </div>
     {% for block in page.content %}
         {% include_block block %}
     {% endfor %}

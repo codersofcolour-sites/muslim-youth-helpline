@@ -2,33 +2,38 @@
 {% load wagtailcore_tags wagtailimages_tags %}
     
 {% block content %}
-    <div class="container mt-5 mb-5">
+<div class="container mt-5 mb-5">
         <div class="text-center">
             <p class="meta">{{ page.date }}</p>
             <div class="intro">{{ page.intro }}</div>
             <h1>{{ page.title }}</h1>
         </div>
 
-        <ul>
-            {% for iter in self.blog_authors.all %}
+        <div class="d-flex justify-content-center">
+                {% for iter in self.blog_authors.all %}
                 {% image iter.author.image fill-50x50 as img %}
-                <li>
-                    {% if iter.author.image %}
-                        <img src="{{ img.url }}" alt="{{ iter.author.name }}">
+                <div>
+                    <div>{% if iter.author.image %}
+                        <img src="{{ img.url }}" class="rounded-circle" alt="{{ iter.author.name }}">
                     {% endif %}
-                    {{ iter.author.name }}
+                        
+                    </div>
                     {% if iter.author.website %}
                         <a href="{{ iter.author.website }}">
-                        (website)
+                            {{ iter.author.name }}
                         </a>
+                    {% else %}
+                        {{ iter.author.name }}
                     {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
+                    </div>
+                {% endfor %}
+            </div>
+</div>
+    
+    <div class="text-center">
+    {% image page.image fill-320x320%}
     </div>
-    
-    {% image page.image fill-320x320 %}
-    
+
     {% for child in self.body %}
 
     <div class="container">

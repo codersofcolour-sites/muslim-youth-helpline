@@ -3,12 +3,14 @@
 <section class="cta" style="background-color: #0885a3;
         color: #ffffff;
         line-height: 1.5;
-        padding: 3.5% 7.5%;%">
+        padding: 3.5% 7.5%;">
 <div class="container-fluid col-md-6 mb-sm-5 mt-sm-5" >
     <div class="row text-center">
         <div class="col-sm-12">
             <h1>{{ self.title }}</h1>
-            {{ self.text|richtext }}
+            <div style="font-size: 25px;">
+                {{ self.text|richtext }}
+            </div>
 
             {% if self.button_page %}
                 <a href="{{ self.button_page.url }}">{{ self.button_text}}</a>

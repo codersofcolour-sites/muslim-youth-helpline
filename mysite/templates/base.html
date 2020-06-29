@@ -66,17 +66,17 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="contact-us">Contact Us</a>
+        <a class="nav-link" href="/contact-us">Contact Us</a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="/donate">Donate</a>
       </li>
-      {% for item in navigation.menu_items.all  %}
+      {% comment %} {% for item in navigation.menu_items.all  %}
         <li>
           <a href="{{ item.link }}" class="nav-link"{% if item.open_in_new_tab %} target="_blank"{% endif %}>{{ item.title }}</a>
         </li>
-      {% endfor %}
+      {% endfor %} {% endcomment %}
     </ul>
 
   {% comment %} <form class="form-inline my-2 my-lg-0">

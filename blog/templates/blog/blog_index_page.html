@@ -6,20 +6,20 @@
     <div class="intro">{{ page.intro|richtext }}</div>
 
     <div class="container">
-    {% for post in page.get_children %}
+    {% for page in blogpages %}
         <div class="row mt-5 mb-5">
             <div class="col-sm-3">
-             {% image page.image fill-250x250 as img %}
-                 <a href="{% pageurl post %}">
-                <img src="{{ img.url }}" alt="{{ img.alt }}">
+             {% image page.blog_image fill-250x250 as blog_img %}
+                 <a href="{% pageurl page %}">
+                    <img src="{{ blog_img.url }}" alt="{{ blog_img.alt }}">
                 </a>    
             </div>
             <div class="col-sm-9">
-                <h2 ><a href="{% pageurl post %}" style="color: #0885a3;">{{ post.title }}</a></h2>
+                <h2 ><a href="{% pageurl page %}" style="color: #0885a3;">{{ page.title }}</a></h2>
             </div>
         </div>
             
-            {{ post.specific.date }}
+            {{ page.specific.date }}
     {% endfor %}
     </div>
 {% endblock %}

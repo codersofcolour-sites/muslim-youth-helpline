@@ -92,8 +92,8 @@ class BlogIndexPage(Page):
 
 
 class BlogPage(Page):
-    date = models.DateField("Post date")
-    image = models.ForeignKey(
+    date = models.DateField("Post date", null=True, blank=False)
+    blog_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
         blank=True,
@@ -103,16 +103,16 @@ class BlogPage(Page):
         index.SearchField('intro'),
         index.SearchField('body'),
     ]
-    intro = models.CharField(max_length=250)
+    intro = models.CharField(max_length=250, null=True, blank=False)
     body = StreamField([
         ('heading', blocks.CharBlock(classname="full title", icon="title")),
         ('paragraph', blocks.RichTextBlock(icon="pilcrow")),
         ('embed', EmbedBlock(icon="media")),
-    ])
+    ], null=True, blank=False)
 
     content_panels = Page.content_panels + [
         FieldPanel('date'),
-        ImageChooserPanel('image'),
+        ImageChooserPanel('blog_image'),
         MultiFieldPanel(
             [
                 InlinePanel("blog_authors", label="Author",

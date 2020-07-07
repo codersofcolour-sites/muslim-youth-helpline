@@ -2,7 +2,9 @@
 {% load wagtailcore_tags wagtailimages_tags %}
     
 {% block content %}
+
 <div class="container mt-5 mb-5">
+{% image self.blog_image fill-320x320 as blog_img %}
         <div class="text-center">
             <p class="meta">{{ page.date }}</p>
             <div class="intro">{{ page.intro }}</div>
@@ -27,11 +29,13 @@
                     {% endif %}
                     </div>
                 {% endfor %}
+
+                <img src="{{ blog_img.url }}">
             </div>
 </div>
     
     <div class="text-center">
-    {% image page.image fill-320x320%}
+ 
     </div>
 
     {% for child in self.body %}
@@ -52,5 +56,4 @@
 <div class="container">
         <p class="text-center"><a href="{{ page.get_parent.url }}" style="color: #3e0163;">Return to blog</a></p>
 </div>
-    
 {% endblock %}

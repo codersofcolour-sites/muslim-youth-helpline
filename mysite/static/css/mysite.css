@@ -2,6 +2,7 @@ body {
   background-color: #ffdb57;
   font-family: "Josefin Sans", sans-serif;
   color: #25313c;
+  overflow-x: hidden;
 }
 
 .navbar-custom {

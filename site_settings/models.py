@@ -4,6 +4,8 @@ from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
 
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 
+from wagtail.images.edit_handlers import ImageChooserPanel
+
 # Create your models here.
 
 
@@ -17,11 +19,20 @@ class SocialMediaSettings(BaseSetting):
     facebook = models.URLField(blank=True, null=True, help_text="Facebook URL")
     linkedin = models.URLField(blank=True, null=True, help_text="LinkedIn URL")
 
+    website_logo = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=False,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+
     panels = [
+        ImageChooserPanel('website_logo'),
         MultiFieldPanel([
             FieldPanel("twitter"),
             FieldPanel("instagram"),
             FieldPanel("facebook"),
             FieldPanel("linkedin"),
-        ], heading="Social Media Settings")
+        ], heading="Site Settings")
     ]

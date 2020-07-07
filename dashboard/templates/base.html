@@ -2,5 +2,12 @@
 {% load static %}
 
 {% block branding_logo %}
-    <img src="{% static 'images/logo_transparent.png' %}" alt="Custom Project" width="80" />
+    <img src="{% static 'images/logo.png' %}" alt="Custom Project" width="100" />
 {% endblock %}
+
+{% block branding_favicon %}
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
+{% endblock %}
+
+
+{% block branding_title %} MYH CMS{% endblock %}

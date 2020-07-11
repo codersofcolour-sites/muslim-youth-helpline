@@ -1,5 +1,8 @@
 from django.db import models
 from django.shortcuts import render
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django import forms
+
 
 from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import RichTextField
@@ -90,7 +93,20 @@ class BlogIndexPage(RoutablePageMixin, Page):
         # in reverse chronological order
         context = super(BlogIndexPage, self).get_context(request)
         live_blogpages = self.get_children().live()
-        context['blogpages'] = live_blogpages.order_by('-first_published_at')
+        all_blogpages = live_blogpages.order_by('-first_published_at')
+
+        paginator = Paginator(all_blogpages, 3)  # @todo change to 5
+
+        page = request.GET.get("page")
+        try:
+            blogpages = paginator.page(page)
+        except PageNotAnInteger:
+            blogpages = paginator.page(1)
+        except EmptyPage:
+            blogpages = paginator.page(paginator.num_pages)
+
+        context["blogpages"] = blogpages
+
         return context
 
     @route(r'^latest/$', name="latest_posts")
@@ -119,6 +135,7 @@ class BlogPage(Page):
         blank=True,
         on_delete=models.SET_NULL
     )
+
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
         index.SearchField('body'),

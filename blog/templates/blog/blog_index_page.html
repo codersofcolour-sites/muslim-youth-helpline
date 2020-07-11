@@ -5,6 +5,7 @@
     
     <a href="{% routablepageurl page "latest_posts" %}">View Latest Posts Only</a>
 
+
     <h1>{{ page.title }}</h1>
     <div class="intro">{{ page.intro|richtext }}</div>
 
@@ -25,4 +26,41 @@
             {{ page.specific.date }}
     {% endfor %}
     </div>
+
+
+    {# Only show pagination if there is more than one page to click through #}
+    {% if blogpages.paginator.num_pages > 1 %}
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="pagination">
+                        {% if blogpages.has_previous %}
+                            <li class="page-item">
+                                <a href="?page={{ blogpages.previous_page_number }}" class="page-link">
+                                    <span>&laquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% for page_num in blogpages.paginator.page_range %}
+                            <li class="page-item {% if page_num == blogpages.number %} active{% endif %}">
+                                <a href="?page={{ page_num }}" class="page-link">
+                                    {{ page_num }}
+                                </a>
+                            </li>
+                        {% endfor %}
+
+                        {% if blogpages.has_next %}
+                            <li class="page-item">
+                                <a href="?page={{ blogpages.next_page_number }}" class="page-link">
+                                    <span>&raquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
 {% endblock %}

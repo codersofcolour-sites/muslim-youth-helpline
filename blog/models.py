@@ -1,4 +1,6 @@
 from django.db import models
+from django.shortcuts import render
+
 from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import RichTextField
 from wagtail.admin.edit_handlers import (
@@ -16,6 +18,7 @@ from wagtail.embeds.blocks import EmbedBlock
 from modelcluster.fields import ParentalKey
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
+from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 
 
 class BlogAuthorsOrderable(Orderable):
@@ -74,7 +77,7 @@ class BlogAuthor(models.Model):
 register_snippet(BlogAuthor)
 
 
-class BlogIndexPage(Page):
+class BlogIndexPage(RoutablePageMixin, Page):
     """Index page lists all the blog pages."""
     intro = RichTextField(blank=True)
 
@@ -89,6 +92,12 @@ class BlogIndexPage(Page):
         live_blogpages = self.get_children().live()
         context['blogpages'] = live_blogpages.order_by('-first_published_at')
         return context
+
+    @route(r'^latest/$')
+    def latest_blog_posts(self, request, *args, **kwargs):
+        context = self.get_context(request, *args, **kwargs)
+        context["blogpages"] = context["blogpages"][:1]
+        return render(request, "blog/latest_posts.html", context)
 
 
 class BlogPage(Page):

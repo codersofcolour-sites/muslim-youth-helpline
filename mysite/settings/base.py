@@ -64,6 +64,8 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',
     'django_extensions',
+    'captcha',
+    'wagtailcaptcha',
 ]
 
 MIDDLEWARE = [
@@ -198,3 +200,8 @@ if "AWS_STORAGE_BUCKET_NAME" in env:
 
 #
 WAGTAILEMBEDS_RESPONSIVE_HTML = True
+
+# Recaptcha settings
+RECAPTCHA_PUBLIC_KEY = "6Ld-V7AZAAAAAErF-4xGoWE-mP5_A219It-kMYzQ"
+RECAPTCHA_PRIVATE_KEY = "6Ld-V7AZAAAAAAibErp5vO8z1_B4xoH0FuQJkV6Q"
+NOCAPTCHA = True

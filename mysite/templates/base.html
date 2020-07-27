@@ -1,7 +1,6 @@
-{% load static wagtailuserbar menus_tags wagtailcore_tags wagtailsettings_tags wagtailimages_tags menu_tags %}
+{% load static wagtailuserbar menus_tags wagtailcore_tags wagtailsettings_tags wagtailimages_tags %}
 
 {% get_menu "main" as navigation %}
-
 
 
 <!DOCTYPE html>
@@ -62,15 +61,21 @@
         <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a> 
       </li>
 
-      {% main_menu template="menus/bootstrap3/main_menu_dropdown.html" %}
+      <li class="nav-item">
+        <a class="nav-link" href="/about">About</a>
+      </li>
 
-      
+      <li class="nav-item">
+        <a class="nav-link" href="/blog">Blog</a>
+      </li>
 
-      {% for item in navigation.menu_items.all %}
-                        <li>
-                            <a href="{{ item.link }}" class="nav-link"{% if item.open_in_new_tab %} target="_blank"{% endif %}>{{ item.title }}</a>
-                        </li>
-                    {% endfor %}
+      <li class="nav-item">
+        <a class="nav-link" href="/contact-us">Contact Us</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/donate">Donate</a>
+      </li>
 
       
       {% comment %} {% for item in navigation.menu_items.all  %}
@@ -158,15 +163,6 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
         <script type="text/javascript" src="{% static 'js/mysite.js' %}"></script>
-        <script>
-          function initFreshChat() {
-            window.fcWidget.init({
-              token: "e8b47333-08e5-4259-8d23-bcdbbfd960f1",
-              host: "https://wchat.freshchat.com"
-            });
-          }
-          function initialize(i,t){var e;i.getElementById(t)?initFreshChat():((e=i.createElement("script")).id=t,e.async=!0,e.src="https://wchat.freshchat.com/js/widget.js",e.onload=initFreshChat,i.head.appendChild(e))}function initiateCall(){initialize(document,"freshchat-js-sdk")}window.addEventListener?window.addEventListener("load",initiateCall,!1):window.attachEvent("load",initiateCall,!1);
-        </script>
 
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}

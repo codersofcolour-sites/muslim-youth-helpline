@@ -81,15 +81,6 @@ class CTABlock(blocks.StructBlock):
         label = "CTA"
 
 
-class HTMLBlock(blocks.RawHTMLBlock):
-    """A section to embed raw HTML"""
-
-    class Meta:  #  noqa
-        # template = "streams/cta_block.html"
-        icon = "code"
-        label = "Embed HTML"
-
-
 class LinksStructValue(blocks.StructValue):
     """Additional logic for our urls"""
 

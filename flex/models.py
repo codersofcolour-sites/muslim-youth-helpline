@@ -19,7 +19,7 @@ class FlexPage(Page):
             ("full_richtext", blocks.RichtextBlock()),
             ("simple_richtext", blocks.SimpleRichtextBlock()),
             ("cards", blocks.CardBlock()),
-            ("cta", blocks.CTABlock()),
+            ("CTA", blocks.CTABlock()),
             ("button", blocks.ButtonBlock()),
             ("HTML", blocks.HTMLBlock()),
         ],

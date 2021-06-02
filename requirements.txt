@@ -80,7 +80,7 @@ toml==0.10.0
 tox==3.14.4
 tzlocal==1.5.1
 Unidecode==1.1.1
-urllib3==1.25.8
+urllib3==1.26.5
 virtualenv==20.0.3
 wagtail==2.8
 wagtailmenus==3.0.2

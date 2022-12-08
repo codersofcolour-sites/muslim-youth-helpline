@@ -11,7 +11,7 @@ black==19.3b0
 boto3==1.7.84
 botocore==1.10.84
 buckup==0.1a2
-certifi==2019.11.28
+certifi==2022.12.7
 cffi==1.14.0
 cfgv==3.0.0
 chardet==3.0.4
